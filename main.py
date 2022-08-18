@@ -13,6 +13,9 @@ class ProccessExcel:
         self.grouped: Optional[pd.DataFrame] = None
         self.main()
 
+    def __repr__(self):
+        return f"Scream Test Excel, Sheet Name: {self.sheet_name}"
+
     def preprocess(self) -> None:
         self.df.rename(
             {c: c.lower().replace(" ", "_") for c in self.df.columns},
@@ -78,5 +81,7 @@ if __name__ == "__main__":
     for sheet in xls.keys():
         xls[sheet] = ProccessExcel(sheet_name=sheet)
 
-    combo = xls["L7"] + xls["Task_L7"]
-    combo.to_excel("combo1.xlsx", sheet_name="combo1")
+    l7 = xls["L7"]
+    t7 = xls["Task_L7"]
+    combo = l7 + t7
+    # combo.to_excel("combo1.xlsx", sheet_name="combo1")
